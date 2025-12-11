@@ -11,14 +11,12 @@ import WhyChooseUs from '../Components/WhyChooseUs'
 export default function Home() {
   return (
     <div>
-        <Navbar></Navbar>
-    <HeroBanner></HeroBanner>
-    <OurProducts></OurProducts>
-    <HowItWorks></HowItWorks>
-    <CustomerFeedbackCarousel></CustomerFeedbackCarousel>
-    <FeaturedCategories></FeaturedCategories>
-    <WhyChooseUs></WhyChooseUs>
-        <Footer></Footer>
+      <HeroBanner></HeroBanner>
+      <OurProducts></OurProducts>
+      <HowItWorks></HowItWorks>
+      <CustomerFeedbackCarousel></CustomerFeedbackCarousel>
+      <FeaturedCategories></FeaturedCategories>
+      <WhyChooseUs></WhyChooseUs>
     </div>
   )
 }

@@ -33,7 +33,7 @@ export default function Navbar() {
             </li>
 
             <li>
-                <NavLink to="/add-car" className={navLinkStyle}>
+                <NavLink to="/all-products" className={navLinkStyle}>
                     All-Product
                 </NavLink>
             </li>
