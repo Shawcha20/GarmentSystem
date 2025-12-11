@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useAuth } from "./useAuth";
+import axios from 'axios'
 const instance=axios.create({
     baseURL:"http://localhost/3000/"
 })
@@ -8,7 +9,7 @@ const instance=axios.create({
 export default function useAxiosSecure(){
     const {user}=useAuth();
     useEffect(()=>{
-        const requestInterceptor=instance.interceptors.requrest.use(config=>{
+        const requestInterceptor=instance.interceptors.request.use(config=>{
 
             if(user?.accessToken)
             {
@@ -16,5 +17,9 @@ export default function useAxiosSecure(){
             }
             return config;
         })
-    })
+        return ()=>{
+            instance.interceptors.request.eject(requestInterceptor);
+        }
+    },[user]);
+    return instance;
 }
