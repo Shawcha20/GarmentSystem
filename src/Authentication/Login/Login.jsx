@@ -8,9 +8,11 @@ import toast from "react-hot-toast";
 
 import { useAuth } from "../../hooks/useAuth";
 import { showSuccess } from "../../Utils/Notification";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+
 
 export default function Login() {
-  const { UserLogin, googleLogin } = useAuth();
+  const { signIn, googleLogin } = useAuth();
 
   const [form, setForm] = useState({ email: "", password: "" });
   const [show, setShow] = useState(false);
@@ -19,8 +21,8 @@ export default function Login() {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+  const axiosSecure=useAxiosSecure();
 
-  // -------------------- Handle Email Login --------------------
   const handleSubmit = (e) => {
     e.preventDefault();
     setError({ email: "", password: "", general: "" });
@@ -35,9 +37,9 @@ export default function Login() {
       return;
     }
 
-    UserLogin(email, password)
+    signIn(email, password)
       .then(() => {
-        showSuccess("Welcome back 💖");
+        showSuccess("Welcome back");
         navigate(from, { replace: true });
       })
       .catch((err) => {
@@ -52,29 +54,30 @@ export default function Login() {
   };
 
   // -------------------- Google Login --------------------
-  const handleGoogle = async () => {
-    try {
-      const result = await googleLogin();
-      const user = result.user;
 
-      // -------------------------
-    
-      //
-      // await axiosSecure.post("/users", {
-      //   name: user.displayName,
-      //   email: user.email,
-      //   image: user.photoURL,
-      //   role: "buyer",
-      //   status: "pending"
-      // });
-      // -------------------------
+const handleGoogle = async () => {
+  try {
+    const result = await googleLogin();
+    const user = result.user;
 
-      showSuccess("Signed in with Google ✨");
-      navigate(from, { replace: true });
-    } catch (err) {
-      toast.error("Google sign-in failed");
-    }
-  };
+    const userInfo = {
+      name: user.displayName,
+      email: user.email,
+      image: user.photoURL,
+      role: "buyer",
+      status: "pending",
+    };
+
+    const res = await axiosSecure.post("/users", userInfo);
+    console.log("Backend response:", res.data);
+
+    showSuccess("Signed in with Google ✨");
+    navigate(from, { replace: true });
+  } catch (err) {
+    console.error(err);
+    toast.error("Google sign-in failed");
+  }
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-pink-100 via-pink-50 to-white px-4">

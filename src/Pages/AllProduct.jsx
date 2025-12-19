@@ -101,7 +101,7 @@ export default function AllProducts() {
   useEffect(() => {
     setLoading(true);
 
-    // Backend fetch disabled
+
     // const fetchProducts = async () => {
     //   const res = await axiosSecure.get("/products");
     //   setProducts(res.data);

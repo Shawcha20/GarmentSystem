@@ -5,16 +5,14 @@ import { motion } from "framer-motion";
 import { Eye, EyeOff } from "lucide-react";
 import { useAuth } from "../../hooks/useAuth";
 import { showError, showSuccess } from "../../Utils/Notification";
-
-
-// import axiosSecure from "../hooks/useAxiosSecure";  
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
-  const { UserRegister, updateUserProfile } = useAuth();
+  const { createUser, userUpdateProfile} = useAuth();
   const navigate = useNavigate();
-
+  const axiosSecure = useAxiosSecure();
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -23,9 +21,9 @@ export default function Signup() {
     const name = form.name.value;
     const email = form.email.value;
     const photoURL = form.photoURL.value;
-    const role = form.role.value;  
+    const role = form.role.value;
     const password = form.password.value;
-    const status = "pending"; // default
+    const status = "pending";
 
     // ------------------ VALIDATION ------------------
     if (password.length < 6)
@@ -36,24 +34,21 @@ export default function Signup() {
       return setError("Password must include a lowercase letter.");
 
     try {
-      // Firebase register
-      await UserRegister(email, password);
-      await updateUserProfile(name, photoURL);
+      await createUser(email, password);
+      await userUpdateProfile(name, photoURL);
 
       // --------------------------------------------------
-      //
-      //
-      //
-      // await axiosSecure.post("/users", {
-      //   name,
-      //   email,
-      //   photoURL,
-      //   role,
-      //   status,
-      // });
+
+      await axiosSecure.post("/users", {
+        name,
+        email,
+        photoURL,
+        role,
+        status,
+      });
       // --------------------------------------------------
 
-      showSuccess("Account created successfully 💖");
+      showSuccess("Account created successfully");
       navigate("/login");
     } catch (err) {
       setError(err.message);
@@ -84,7 +79,9 @@ export default function Signup() {
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Name */}
           <div>
-            <label className="block text-sm text-gray-700 mb-1">Full Name</label>
+            <label className="block text-sm text-gray-700 mb-1">
+              Full Name
+            </label>
             <input
               type="text"
               name="name"
@@ -108,7 +105,9 @@ export default function Signup() {
 
           {/* Photo URL */}
           <div>
-            <label className="block text-sm text-gray-700 mb-1">Photo URL</label>
+            <label className="block text-sm text-gray-700 mb-1">
+              Photo URL
+            </label>
             <input
               type="text"
               name="photoURL"
@@ -151,11 +150,10 @@ export default function Signup() {
               className="input input-bordered w-full bg-white/90 border-pink-300 focus:ring-2 focus:ring-pink-400 pr-10"
               required
             />
-
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-9 text-gray-500"
+              className="absolute right-3 top-9 z-10 text-gray-400 hover:text-blue-400"
             >
               {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
