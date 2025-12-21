@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { showSuccess } from "../../Utils/Notification";
+import { Link } from "react-router-dom";
+import LoadingSpinner from "../../Components/Shared/LoadingSpinner";
 
 export default function PendingOrders() {
   const axiosSecure = useAxiosSecure();
   const [orders, setOrders] = useState([]);
-
+  const [loading, setLoading]=useState(true);
   useEffect(() => {
-    axiosSecure.get("/orders/pending").then(res => setOrders(res.data));
+    setLoading(true);
+    axiosSecure.get("/orders/pending").then(res => {setOrders(res.data); setLoading(false)});
   }, []);
-
+  if(loading) return <LoadingSpinner></LoadingSpinner>
   const handleApprove = async (id) => {
     await axiosSecure.patch(`/orders/approve/${id}`);
     setOrders(orders.filter(o => o._id !== id));
@@ -58,6 +61,14 @@ export default function PendingOrders() {
                 >
                   Reject
                 </button>
+                   
+                <Link
+                  to={`/dashboard/track-order/${o._id}`}
+                  className="btn btn-sm btn-outline"
+                >
+                  View Tracking
+                </Link>
+            
               </td>
             </tr>
           ))}

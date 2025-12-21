@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { showConfirm, showError, showSuccess } from "../../Utils/Notification";
+import LoadingSpinner from "../../Components/Shared/LoadingSpinner";
 
 export default function ManageProducts() {
   const axiosSecure = useAxiosSecure();
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
   const [selectedProduct, setSelectedProduct] = useState(null);
-  
+  const [loading, setLoading]=useState(true);
   useEffect(() => {
+    setLoading(true);
     axiosSecure.get("/products").then((res) => {
       console.log(res.data.data);
       setProducts(res.data.data);
+      setLoading(false);
     });
   }, []);
-
+  if(loading)return <LoadingSpinner></LoadingSpinner>
   const handleDelete = async (id) => {
     const result = await showConfirm("Delete this product?");
     if (!result.isConfirmed) return;
