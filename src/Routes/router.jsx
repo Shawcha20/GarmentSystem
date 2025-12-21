@@ -22,6 +22,8 @@ import ApprovedOrders from "../Pages/ManagerPages/ApprovedOrders";
 import ManageUsers from "../Pages/Admin/ManageUsers";
 import AdminAllProducts from "../Pages/Admin/AdminAllProducts";
 import AdminAllOrders from "../Pages/Admin/AdminAllOrders";
+import DashboardRedirect from "./DashboardRedirect";
+import SingleTrackOrder from "../Pages/singleTrackOrder";
 
 export const router = createBrowserRouter([
   {
@@ -77,17 +79,24 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         children: [
-          { path: "my-orders", element: <Myorders /> },
-          { path: "track-order/:id", element: <TrackOrder /> },
-          { path: "profile", element: <Profile/> },
+          { index: true, element: <DashboardRedirect /> },
 
-          // MANAGER
+          // ================= BUYER =================
+          { path: "my-orders", element: <Myorders /> },
+          // {path:"track-order",element:<TrackOrder></TrackOrder>},
+          // { path: "track-order/:id", element: <TrackOrder /> },
+          { path: "track-order", element: <TrackOrder /> }, 
+          { path: "track-order/:id", element: <SingleTrackOrder /> }, 
+
+          { path: "profile", element: <Profile /> },
+
+          // ================= MANAGER =================
           { path: "add-product", element: <AddProduct /> },
           { path: "manage-products", element: <ManageProducts /> },
           { path: "pending-orders", element: <PendingOrders /> },
           { path: "approve-orders", element: <ApprovedOrders /> },
 
-          // ADMIN
+          // ================= ADMIN =================
           { path: "manage-users", element: <ManageUsers /> },
           { path: "all-products", element: <AdminAllProducts /> },
           { path: "all-orders", element: <AdminAllOrders /> },

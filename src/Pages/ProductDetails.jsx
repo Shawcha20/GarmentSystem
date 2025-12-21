@@ -5,62 +5,20 @@ import { useAuth } from "../hooks/useAuth";
 
 import LoadingSpinner from "../Components/Shared/LoadingSpinner";
 import { showError } from "../Utils/Notification";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
-// import useAxiosSecure from "../hooks/useAxiosSecure";   
-
-// ------------------------------------------------------
-// 🔹 STATIC DEMO PRODUCT DATA (USED NOW)
-// ------------------------------------------------------
-const demoProducts = [
-  {
-    _id: "1",
-    name: "Elegant Bridal Lehenga",
-    category: "Bridal",
-    price: 2500,
-    minOrder: 1,
-    quantity: 3,
-    description:
-      "A luxurious hand-embroidered bridal lehenga featuring premium silk and stone detailing.",
-    image:
-      "https://images.unsplash.com/photo-1593032457869-382a725464ec?w=800&q=80",
-    paymentType: "Cash on Delivery / Online Payment",
-  },
-  {
-    _id: "2",
-    name: "Men’s Premium Blazer",
-    category: "Men",
-    price: 1200,
-    minOrder: 1,
-    quantity: 5,
-    description: "Stylish men’s blazer perfect for weddings and formal events.",
-    image:
-      "https://images.unsplash.com/photo-1520975940657-7f6fd1b55c05?w=800&q=80",
-    paymentType: "Online Payment Only",
-  },
-];
 
 export default function ProductDetails() {
   const { id } = useParams();
   const { user, role } = useAuth();
   const navigate = useNavigate();
-
-  const [product, setProduct] = useState(null);
-
- 
-  useEffect(() => {
-    const found = demoProducts.find((p) => p._id === id);
-    if (!found) return showError("Product not found");
-    setProduct(found);
-  }, [id]);
-
-  
-  /*
   const axiosSecure = useAxiosSecure();
+  const [product, setProduct] = useState(null);
 
   useEffect(() => {
     const fetchProductFromDB = async () => {
       try {
-        const response = await axiosSecure.get(`/products/${id}`);
+        const response = await axiosSecure.get(`/product/${id}`);
         setProduct(response.data);
       } catch (error) {
         showError("Failed to fetch product details");
@@ -69,20 +27,17 @@ export default function ProductDetails() {
 
     fetchProductFromDB();
   }, [id]);
-  */
 
   if (!product) return <LoadingSpinner />;
 
- 
   const handleOrder = () => {
     if (!user) return navigate("/login");
 
-    if (role === "manager") {
-      return showError("Managers cannot place orders.");
+    if (role === "manager" || role == "admin") {
+      return showError("Managers or admins cannot place orders.");
     }
 
-   navigate(`/order/${product._id}`);
-
+    navigate(`/order/${product._id}`);
   };
 
   return (
@@ -135,7 +90,7 @@ export default function ProductDetails() {
 
                 <p>
                   <strong className="text-gray-800">Payment Options:</strong>{" "}
-                  {product.paymentType}
+                  {product.paymentOption}
                 </p>
               </div>
 
@@ -146,10 +101,10 @@ export default function ProductDetails() {
               >
                 Place Order
               </button>
-
+              {/* 
               <p className="text-xs text-gray-400 text-center mt-2">
                 *Only logged-in users can place orders
-              </p>
+              </p> */}
             </div>
           </div>
         </motion.div>

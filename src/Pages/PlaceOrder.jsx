@@ -1,55 +1,89 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-
-
 import { useAuth } from "../hooks/useAuth";
 import { showError, showSuccess } from "../Utils/Notification";
-
-const demoProducts = [
-  {
-    _id: "1",
-    name: "Elegant Bridal Lehenga",
-    price: 2500,
-    quantity: 3,
-  },
-  {
-    _id: "2",
-    name: "Men’s Premium Blazer",
-    price: 1200,
-    quantity: 5,
-  },
-];
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 export default function PlaceOrder() {
   const { id } = useParams();
   const { user } = useAuth();
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
 
   const [product, setProduct] = useState(null);
   const [qty, setQty] = useState(1);
 
+  // Extra form fields
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [notes, setNotes] = useState("");
+
   useEffect(() => {
-    const found = demoProducts.find((p) => p._id === id);
-    if (!found) showError("Product not found");
-    setProduct(found);
+    const fetchProduct = async () => {
+      try {
+        const res = await axiosSecure.get(`/product/${id}`);
+        setProduct(res.data);
+        setQty(res.data.minOrder || 1);
+      } catch (err) {
+        showError("Failed to load product");
+      }
+    };
+    fetchProduct();
   }, [id]);
 
   if (!product) return null;
 
   const total = qty * product.price;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (qty < 1) return showError("Quantity cannot be less than 1");
-    if (qty > product.quantity)
-      return showError("Cannot order more than available stock");
+    // Quantity validation
+    if (qty < product.minOrder) {
+      return showError(
+        `Minimum order quantity is ${product.minOrder}`
+      );
+    }
 
-    // showSuccess("Processing to payment");
-   navigate(`/pay/${product._id}`);
+    if (qty > product.quantity) {
+      return showError("Order quantity exceeds available stock");
+    }
 
+    // Online payment → Stripe
+    if (product.paymentOption === "PayFirst") {
+      navigate(`/pay/${product._id}`);
+      return;
+    }
 
-    // await axiosSecure.post("/order", orderData)
+    // Cash on Delivery
+    try {
+      const orderData = {
+        email: user.email,
+        firstName,
+        lastName,
+        phone,
+        address,
+        notes,
+        productId: product._id,
+        productName: product.name,
+        quantity: qty,
+        pricePerUnit: product.price,
+        totalPrice: total, // numeric
+        payment: "Cash on Delivery",
+        status: "Pending",
+        createdAt: new Date(),
+      };
+
+      await axiosSecure.post("/order", orderData);
+
+      showSuccess("Order placed successfully");
+      navigate("/dashboard/my-orders");
+    } catch (err) {
+      console.error(err);
+      showError("Failed to place order");
+    }
   };
 
   return (
@@ -59,9 +93,11 @@ export default function PlaceOrder() {
           Complete Your Order
         </h2>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-4">
+
+          {/* Email */}
           <div>
-            <label className="font-semibold">Email</label>
+            <label>Email</label>
             <input
               type="email"
               value={user?.email}
@@ -70,8 +106,9 @@ export default function PlaceOrder() {
             />
           </div>
 
+          {/* Product */}
           <div>
-            <label className="font-semibold">Product</label>
+            <label>Product</label>
             <input
               type="text"
               value={product.name}
@@ -80,8 +117,9 @@ export default function PlaceOrder() {
             />
           </div>
 
+          {/* Price */}
           <div>
-            <label className="font-semibold">Price (per unit)</label>
+            <label>Price (per unit)</label>
             <input
               type="text"
               value={`৳${product.price}`}
@@ -90,23 +128,75 @@ export default function PlaceOrder() {
             />
           </div>
 
+          {/* First & Last Name */}
+          <div className="grid grid-cols-2 gap-3">
+            <input
+              placeholder="First Name"
+              required
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              className="input input-bordered w-full"
+            />
+            <input
+              placeholder="Last Name"
+              required
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              className="input input-bordered w-full"
+            />
+          </div>
+
+          {/* Phone */}
           <div>
-            <label className="font-semibold">Order Quantity</label>
+            <input
+              placeholder="Contact Number"
+              required
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              className="input input-bordered w-full"
+            />
+          </div>
+
+          {/* Address */}
+          <div>
+            <textarea
+              placeholder="Delivery Address"
+              required
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              className="textarea textarea-bordered w-full"
+            />
+          </div>
+
+          {/* Notes */}
+          <div>
+            <textarea
+              placeholder="Additional Notes (optional)"
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              className="textarea textarea-bordered w-full"
+            />
+          </div>
+
+          {/* Quantity */}
+          <div>
+            <label>Order Quantity</label>
             <input
               type="number"
-              min="1"
+              min={product.minOrder}
               max={product.quantity}
               value={qty}
               onChange={(e) => setQty(Number(e.target.value))}
               className="input input-bordered w-full"
             />
             <p className="text-xs text-gray-500">
-              Available: {product.quantity}
+              Min: {product.minOrder}, Available: {product.quantity}
             </p>
           </div>
 
+          {/* Total */}
           <div>
-            <label className="font-semibold">Total Price</label>
+            <label>Total Price</label>
             <input
               type="text"
               value={`৳${total}`}
@@ -115,8 +205,8 @@ export default function PlaceOrder() {
             />
           </div>
 
-          <button className="btn bg-pink-500 hover:bg-pink-400 text-white w-full py-2">
-            Submit Order
+          <button className="btn bg-pink-500 text-white w-full">
+            Confirm Order
           </button>
         </form>
       </div>
