@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "plantdetails-339ee"
-  }
+    "default": "garment-system-9311a",
+    "garment-system": "garment-system-9311a"
+  },
+  "targets": {},
+  "etags": {}
 }
