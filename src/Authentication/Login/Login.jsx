@@ -69,12 +69,12 @@ const handleGoogle = async () => {
     };
 
     const res = await axiosSecure.post("/users", userInfo);
-    console.log("Backend response:", res.data);
+    //console.log("Backend response:", res.data);
 
-    showSuccess("Signed in with Google ✨");
+    showSuccess("Signed in with Google");
     navigate(from, { replace: true });
   } catch (err) {
-    console.error(err);
+    //console.error(err);
     toast.error("Google sign-in failed");
   }
 };

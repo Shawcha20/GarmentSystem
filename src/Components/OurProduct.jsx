@@ -46,7 +46,7 @@ export default function OurProducts() {
             className="text-4xl font-extrabold text-gray-900 mb-3"
           >
             <span className="bg-gradient-to-r from-pink-500 to-pink-400 bg-clip-text text-transparent">
-              Featured Garments
+              Our Products
             </span>
           </motion.h2>
 

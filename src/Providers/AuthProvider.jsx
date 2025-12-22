@@ -5,6 +5,7 @@ import { createUserWithEmailAndPassword,
     onAuthStateChanged,
      signInWithEmailAndPassword, 
      signInWithPopup, 
+     signInWithRedirect, 
      signOut, 
      updateProfile } from 'firebase/auth'
 import AuthContext from './authContext';
