@@ -5,7 +5,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useAuth } from "../../hooks/useAuth";
 
 export default function AddProduct() {
-  const {user}=useAuth();
+  const {user,status}=useAuth();
   const [images, setImages] = useState([]);
   const [preview, setPreview] = useState([]);
   const axiosSecure=useAxiosSecure()
@@ -20,6 +20,9 @@ export default function AddProduct() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if(status=="suspended"){
+      return showError("You are suspended by admin contact admin for details")
+    }
     const form=e.target;
     const productData = {
       name:form.p_name.value,

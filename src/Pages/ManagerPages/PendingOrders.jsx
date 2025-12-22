@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { showSuccess } from "../../Utils/Notification";
+import { showError, showSuccess } from "../../Utils/Notification";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../../Components/Shared/LoadingSpinner";
+import { useAuth } from "../../hooks/useAuth";
 
 export default function PendingOrders() {
   const axiosSecure = useAxiosSecure();
+  const {user, status}=useAuth();
   const [orders, setOrders] = useState([]);
   const [loading, setLoading]=useState(true);
   useEffect(() => {
@@ -14,12 +16,14 @@ export default function PendingOrders() {
   }, []);
   if(loading) return <LoadingSpinner></LoadingSpinner>
   const handleApprove = async (id) => {
+    if(status=="suspended")return showError("suspended users cannot approve orders");
     await axiosSecure.patch(`/orders/approve/${id}`);
     setOrders(orders.filter(o => o._id !== id));
     showSuccess("Order approved");
   };
 
   const handleReject = async (id) => {
+    if(status=="suspended")return showError("suspended users cannot reject orders");
     await axiosSecure.patch(`/orders/reject/${id}`);
     setOrders(orders.filter(o => o._id !== id));
     showSuccess("Order rejected");
@@ -28,7 +32,7 @@ export default function PendingOrders() {
   return (
     <div className="p-6 w-full">
       <h2 className="text-3xl font-bold text-pink-600 mb-6">
-        Pending Orders
+        Pending Orders ({orders.length})
       </h2>
 
       <table className="table bg-white shadow rounded-xl">

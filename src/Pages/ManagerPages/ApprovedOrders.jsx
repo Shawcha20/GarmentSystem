@@ -41,7 +41,7 @@ export default function ApprovedOrders() {
   return (
     <div className="p-6 w-full">
       <h2 className="text-3xl font-bold text-pink-600 mb-6">
-        Approved Orders
+        Approved Orders({orders.length})
       </h2>
 
       <table className="table bg-white shadow rounded-xl">

@@ -38,7 +38,7 @@ export default function ManageProducts() {
 
   return (
     <div className="p-6 w-full">
-      <h2 className="text-3xl font-bold text-pink-600 mb-6">Manage Products</h2>
+      <h2 className="text-3xl font-bold text-pink-600 mb-6">Manage Products({filtered.length})</h2>
 
       <input
         type="text"

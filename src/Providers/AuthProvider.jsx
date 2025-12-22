@@ -17,7 +17,8 @@ export default function AuthProvider({children}) {
     const [user, setUser]=useState(null);
     const [loading, setLoading]=useState(true);
     const [role, setRole] = useState("buyer");   
-  const [status, setStatus] = useState("pending"); 
+    const [suspendInfo, setSuspendInfo] = useState(null);
+    const [status, setStatus] = useState("pending"); 
     const signIn=(email, password)=>{
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
@@ -53,6 +54,7 @@ export default function AuthProvider({children}) {
        googleLogin,
        role,
        status,
+       suspendInfo
     }
 
    useEffect(() => {
@@ -71,13 +73,14 @@ export default function AuthProvider({children}) {
               },
             }
           );
-
           setRole(res.data.role || "buyer");
           setStatus(res.data.status || "pending");
+          setSuspendInfo(res.data.suspendInfo || null);
         } catch (error) {
           console.error("Role fetch failed", error);
           setRole("buyer");
           setStatus("pending");
+
         }
       }
 

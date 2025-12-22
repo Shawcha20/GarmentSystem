@@ -5,10 +5,12 @@ import Footer from '../Components/Shared/Footer'
 
 export default function Main() {
   return (
-    <div>
-        <Navbar></Navbar>
-        <Outlet></Outlet>
-        <Footer></Footer>
+    <div className="min-h-screen flex flex-col overflow-x-hidden">
+      <Navbar />
+      <div className="flex-1">
+        <Outlet />
+      </div>
+      <Footer />
     </div>
-  )
+  );
 }

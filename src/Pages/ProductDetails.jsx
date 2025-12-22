@@ -10,7 +10,7 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 
 export default function ProductDetails() {
   const { id } = useParams();
-  const { user, role } = useAuth();
+  const { user, role ,status} = useAuth();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
   const [product, setProduct] = useState(null);
@@ -33,8 +33,8 @@ export default function ProductDetails() {
   const handleOrder = () => {
     if (!user) return navigate("/login");
 
-    if (role === "manager" || role == "admin") {
-      return showError("Managers or admins cannot place orders.");
+    if (role === "manager" || role == "admin" ||status=="suspended" ) {
+      return showError("Managers or admins or suspended users cannot place orders.");
     }
 
     navigate(`/order/${product._id}`);
