@@ -32,7 +32,7 @@ export default function Footer() {
                 <path d="M4 17c0-1.1.9-2 2-2h5" />
                 <path d="M2 17h20" />
               </svg>
-              GarmentsGear
+              ClothRent
             </Link>
             <p className="text-sm text-gray-600 leading-relaxed">
               A stylish and elegant clothing rental platform offering premium

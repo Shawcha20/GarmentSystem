@@ -26,6 +26,7 @@ import DashboardRedirect from "./DashboardRedirect";
 import SingleTrackOrder from "../Pages/singleTrackOrder";
 import AboutUs from "../Pages/AboutUs";
 import Contact from "../Pages/Contact";
+import PublicRoute from "../Components/Shared/PublicRoute";
 
 export const router = createBrowserRouter([
   {
@@ -42,12 +43,12 @@ export const router = createBrowserRouter([
         Component: AllProducts,
       },
       {
-        path:"about-us",
-        Component:AboutUs
+        path: "about-us",
+        Component: AboutUs
       },
       {
-        path:"contact-info",
-        Component:Contact
+        path: "contact-info",
+        Component: Contact
       },
       {
         path: "/product/:id",
@@ -95,8 +96,8 @@ export const router = createBrowserRouter([
           { path: "my-orders", element: <Myorders /> },
           // {path:"track-order",element:<TrackOrder></TrackOrder>},
           // { path: "track-order/:id", element: <TrackOrder /> },
-          { path: "track-order", element: <TrackOrder /> }, 
-          { path: "track-order/:id", element: <SingleTrackOrder /> }, 
+          { path: "track-order", element: <TrackOrder /> },
+          { path: "track-order/:id", element: <SingleTrackOrder /> },
 
           { path: "profile", element: <Profile /> },
 
@@ -114,12 +115,21 @@ export const router = createBrowserRouter([
       },
     ],
   },
+
   {
     path: "/login",
-    Component: Login,
+    element: (
+      <PublicRoute>
+        <Login />
+      </PublicRoute>
+    ),
   },
   {
     path: "/register",
-    Component: Signup,
+    element: (
+      <PublicRoute>
+        <Signup />
+      </PublicRoute>
+    ),
   },
 ]);

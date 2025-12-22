@@ -65,9 +65,8 @@ export default function AuthProvider({children}) {
       if (currentUser?.email) {
         try {
           const token = await currentUser.getIdToken();
-
           const res = await axios.get(
-            `http://localhost:3000/users/role/${currentUser.email}`,
+            `https://garment-system-theta.vercel.app/users/role/${currentUser.email}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,

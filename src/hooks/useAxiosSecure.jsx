@@ -3,7 +3,7 @@ import { useAuth } from "./useAuth";
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://garment-system-theta.vercel.app",
 });
 
 export default function useAxiosSecure() {

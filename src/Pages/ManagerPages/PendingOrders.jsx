@@ -42,6 +42,7 @@ export default function PendingOrders() {
             <th>User</th>
             <th>Product</th>
             <th>Qty</th>
+            <th>Order Date</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -52,6 +53,7 @@ export default function PendingOrders() {
               <td>{o.email}</td>
               <td>{o.productName}</td>
               <td>{o.quantity}</td>
+              <td>{new Date(o.createdAt).toLocaleDateString()}</td>
               <td className="flex gap-2">
                 <button
                   onClick={() => handleApprove(o._id)}
