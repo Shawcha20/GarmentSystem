@@ -12,7 +12,7 @@ export default function AllProducts() {
 
   
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
+  const itemsPerPage = 9;
   const axiosSecure= useAxiosSecure();
  
 

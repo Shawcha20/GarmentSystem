@@ -40,12 +40,12 @@ export default function Navbar() {
       {!user ? (
         <>
           <li>
-            <NavLink to="/my-listings" className={navLinkStyle}>
+            <NavLink to="/about-us" className={navLinkStyle}>
               About Us
             </NavLink>
           </li>
           <li>
-            <NavLink to="/my-bookings" className={navLinkStyle}>
+            <NavLink to="/contact-info" className={navLinkStyle}>
               Contact
             </NavLink>
           </li>

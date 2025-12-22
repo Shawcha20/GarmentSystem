@@ -3,75 +3,87 @@ import { useNavigate } from "react-router-dom";
 import { showConfirm, showSuccess } from "../../Utils/Notification";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../Components/Shared/LoadingSpinner";
-
-const demoOrders = [
-  {
-    _id: "ORD-1001",
-    product: "Elegant Bridal Lehenga",
-    quantity: 1,
-    status: "Pending",
-    payment: "Paid",
-  },
-  {
-    _id: "ORD-1002",
-    product: "Men’s Premium Blazer",
-    quantity: 2,
-    status: "Approved",
-    payment: "Cash on Delivery",
-  },
-  {
-    _id: "ORD-1003",
-    product: "Designer Saree",
-    quantity: 1,
-    status: "Shipped",
-    payment: "Paid",
-  },
-];
+import { useAuth } from "../../hooks/useAuth";
 
 export default function MyOrders() {
-  const [orders, setOrders] = useState(null);
+  const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { user } = useAuth();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
-  useEffect(() => {
-    setLoading(true);
-    const fetchOrder = async () => {
-      const order = await axiosSecure.get("/order");
-      console.log(order);
-      setOrders(order.data.result);
-      setLoading(false);
-    };
-    fetchOrder();
-  }, []);
-  if (loading) return <div ><LoadingSpinner></LoadingSpinner></div>;
 
-  const handleCancel = async (id) => {
-    const result = await showConfirm(
+  useEffect(() => {
+    const fetchOrder = async () => {
+      try {
+        const res = await axiosSecure.get(`/order/${user.email}`);
+        setOrders(res.data || []);
+      } catch (err) {
+        console.error(err);
+        setOrders([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchOrder();
+  }, [user.email, axiosSecure]);
+
+  if (loading) return <LoadingSpinner />;
+
+  if (orders.length === 0) {
+    return (
+      <div className="p-6 w-full text-center">
+        <h2 className="text-3xl font-bold text-pink-600 mb-4">
+          My Orders
+        </h2>
+        <p className="text-gray-500 text-lg">
+          You haven’t placed any orders yet.
+        </p>
+        <button
+          onClick={() => navigate("/all-products")}
+          className="btn bg-pink-500 text-white mt-4"
+        >
+          Browse Products
+        </button>
+      </div>
+    );
+  }
+
+  const handleCancel = async (orderId) => {
+    const confirm = await showConfirm(
       "Cancel this order?",
       "This action cannot be undone"
     );
 
-    if (!result.isConfirmed) return;
+    if (!confirm.isConfirmed) return;
 
     try {
-      await axiosSecure.patch(`/orders/cancel/${id}`);
+      const res = await axiosSecure.patch(
+        `/orders/cancel/${orderId}`
+      );
+
+      showSuccess(res.data.message);
 
       setOrders((prev) =>
         prev.map((order) =>
-          order._id === id ? { ...order, status: "cancelled" } : order
+          order._id === orderId
+            ? { ...order, status: "cancelled" }
+            : order
         )
       );
-
-      showSuccess("Order cancelled successfully");
     } catch (err) {
       console.error(err);
-      showError(err.response?.data?.message || "Failed to cancel order");
+      alert(
+        err.response?.data?.message || "Failed to cancel order"
+      );
     }
   };
 
   return (
     <div className="p-6 w-full">
-      <h2 className="text-3xl font-bold text-pink-600 mb-6">My Orders</h2>
+      <h2 className="text-3xl font-bold text-pink-600 mb-6">
+        My Orders
+      </h2>
 
       <div className="overflow-x-auto bg-white rounded-xl shadow">
         <table className="table">
@@ -97,8 +109,10 @@ export default function MyOrders() {
                     className={`badge ${
                       order.status === "pending"
                         ? "badge-warning"
-                        : order.status === "Approved"
+                        : order.status === "approved"
                         ? "badge-success"
+                        : order.status === "cancelled"
+                        ? "badge-error"
                         : "badge-neutral"
                     }`}
                   >
@@ -109,7 +123,9 @@ export default function MyOrders() {
                 <td className="flex gap-2">
                   <button
                     onClick={() =>
-                      navigate(`/dashboard/track-order/${order._id}`)
+                      navigate(
+                        `/dashboard/track-order/${order._id}`
+                      )
                     }
                     className="btn btn-sm btn-outline"
                   >

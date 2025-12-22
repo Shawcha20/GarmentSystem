@@ -2,16 +2,18 @@ import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useNavigate } from "react-router-dom";
 import LoadingSpinner from "../../Components/Shared/LoadingSpinner";
+import { useAuth } from "../../hooks/useAuth";
 
 export default function TrackOrder() {
+  const {user}=useAuth();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axiosSecure.get("/orders").then(res => {
-      setOrders(res.data.result);
+    axiosSecure.get(`order/${user.email}`).then(res => {
+      setOrders(res.data);
       setLoading(false);
     });
   }, []);

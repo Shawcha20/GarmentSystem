@@ -2,95 +2,28 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import GarmentCard from "./Product";
-// import useAxiosSecure from "../hooks/useAxiosSecure";   
-// import LoadingSpinner from "./LoadingSpinner";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import LoadingSpinner from "./Shared/LoadingSpinner";
+
 
 
 
 export default function OurProducts() {
   const [featuredGarments, setFeaturedGarments] = useState([]);
-
-  // ----------- STATIC DEMO GARMENT DATA -----------
-  const demoData = [
-    {
-      _id: "1",
-      name: "Elegant Floral Dress",
-      category: "Women's Wear",
-      image_url:
-        "https://images.unsplash.com/photo-1520975940657-7f6fd1b55c05?w=800&q=80",
-      status: "Available",
-      location: "Dhaka",
-      provider: "Fashion House BD",
-      price_per_day: 15,
-    },
-    {
-      _id: "2",
-      name: "Men’s Premium Blazer",
-      category: "Men's Formal",
-      image_url:
-        "https://images.unsplash.com/photo-1542060748-10c28b62716f?w=800&q=80",
-      status: "Available",
-      location: "Chittagong",
-      provider: "StyleMan BD",
-      price_per_day: 20,
-    },
-    {
-      _id: "3",
-      name: "Luxury Bridal Lehenga",
-      category: "Bridal Collection",
-      image_url:
-        "https://images.unsplash.com/photo-1609856869229-4b60e06d9ba8?w=800&q=80",
-      status: "Available",
-      location: "Sylhet",
-      provider: "Royal Bridal BD",
-      price_per_day: 50,
-    },
-    {
-      _id: "4",
-      name: "Casual Summer Top",
-      category: "Women's Wear",
-      image_url:
-        "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&q=80",
-      status: "Available",
-      location: "Rajshahi",
-      provider: "Trendy Look",
-      price_per_day: 10,
-    },
-    {
-      _id: "5",
-      name: "Classic Men's Panjabi",
-      category: "Men’s Ethnic",
-      image_url:
-        "https://images.unsplash.com/photo-1576871337632-f8bdf15e4a88?w=800&q=80",
-      status: "Available",
-      location: "Khulna",
-      provider: "Heritage BD",
-      price_per_day: 12,
-    },
-    {
-      _id: "6",
-      name: "Kids Wedding Outfit",
-      category: "Kids Wear",
-      image_url:
-        "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=800&q=80",
-      status: "Available",
-      location: "Dhaka",
-      provider: "Little Stars BD",
-      price_per_day: 8,
-    },
-  ];
-
-  // ----------- COMMENTED SERVER FETCH CODE -------------
-  /*
+  const [loading,setLoading]=useState(true);
   const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
+    setLoading(true);
     const fetchGarments = async () => {
+      
       try {
-        const res = await axiosSecure.get("/garments");
+        const res = await axiosSecure.get("/featured-products");
+        console.log(res);
         let data = res.data;
         if (data.length > 6) data = data.slice(0, 6);
         setFeaturedGarments(data);
+        setLoading(false);
       } catch (err) {
         console.error("Error fetching garments:", err);
       }
@@ -98,13 +31,9 @@ export default function OurProducts() {
 
     fetchGarments();
   }, []);
-  */
 
-  // Using static demo data instead
-  useEffect(() => {
-    setFeaturedGarments(demoData);
-  }, []);
 
+  if(loading)return <LoadingSpinner></LoadingSpinner>
   return (
     <section className="bg-gradient-to-br from-pink-50 via-white to-pink-100 py-20">
       <div className="container mx-auto px-6">
@@ -144,10 +73,10 @@ export default function OurProducts() {
 
         <div className="text-center mt-16">
           <Link
-            to="/products"
+            to="/all-products"
             className="inline-block bg-pink-500 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-pink-600 transition"
           >
-            View All Garments
+            View All Product
           </Link>
         </div>
 

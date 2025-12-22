@@ -42,19 +42,11 @@ export default function PlaceOrder() {
 
     // Quantity validation
     if (qty < product.minOrder) {
-      return showError(
-        `Minimum order quantity is ${product.minOrder}`
-      );
+      return showError(`Minimum order quantity is ${product.minOrder}`);
     }
 
     if (qty > product.quantity) {
       return showError("Order quantity exceeds available stock");
-    }
-
-    // Online payment → Stripe
-    if (product.paymentOption === "PayFirst") {
-      navigate(`/pay/${product._id}`);
-      return;
     }
 
     // Cash on Delivery
@@ -70,12 +62,23 @@ export default function PlaceOrder() {
         productName: product.name,
         quantity: qty,
         pricePerUnit: product.price,
-        totalPrice: total, // numeric
-        payment: "Cash on Delivery",
-        status: "Pending",
+        totalPrice: total,
         createdAt: new Date(),
       };
 
+      //  ONLINE PAYMENT
+      if (product.paymentOption === "PayFirst") {
+        const res = await axiosSecure.post(
+          "/create-checkout-session",
+          orderData
+        );
+
+        window.location.href = res.data.url; 
+        return;
+      }
+
+      // CASH ON DELIVERY
+      orderData.payment = "Cash on Delivery";
       await axiosSecure.post("/order", orderData);
 
       showSuccess("Order placed successfully");
@@ -94,7 +97,6 @@ export default function PlaceOrder() {
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-
           {/* Email */}
           <div>
             <label>Email</label>

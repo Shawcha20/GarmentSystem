@@ -13,7 +13,7 @@ export default function SingleTrackOrder() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axiosSecure.get(`/order/${id}`).then(res => {
+    axiosSecure.get(`/product-order/${id}`).then(res => {
         console.log(res);
       setOrder(res.data);
       setLoading(false);

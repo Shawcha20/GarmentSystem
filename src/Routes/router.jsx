@@ -24,6 +24,8 @@ import AdminAllProducts from "../Pages/Admin/AdminAllProducts";
 import AdminAllOrders from "../Pages/Admin/AdminAllOrders";
 import DashboardRedirect from "./DashboardRedirect";
 import SingleTrackOrder from "../Pages/singleTrackOrder";
+import AboutUs from "../Pages/AboutUs";
+import Contact from "../Pages/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +40,14 @@ export const router = createBrowserRouter([
       {
         path: "/all-products",
         Component: AllProducts,
+      },
+      {
+        path:"about-us",
+        Component:AboutUs
+      },
+      {
+        path:"contact-info",
+        Component:Contact
       },
       {
         path: "/product/:id",

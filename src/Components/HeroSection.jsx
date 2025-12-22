@@ -45,7 +45,7 @@ export default function HeroBanner() {
             transition={{ duration: 1.0 }}
           >
             <Link
-              to="/add-car"
+              to="/all-products"
               className="px-10 py-3 text-lg font-semibold rounded-full bg-pink-500 text-white shadow-lg hover:bg-pink-600 transition"
             >
               View Products
