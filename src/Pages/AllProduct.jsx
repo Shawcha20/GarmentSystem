@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../Components/Shared/LoadingSpinner";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 // import useAxiosSecure from "../hooks/useAxiosSecure"; 
 
 
@@ -13,7 +14,7 @@ export default function AllProducts() {
   
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
-  const axiosSecure= useAxiosSecure();
+  const axiosSecure= useAxiosPublic();
  
 
   // Load data
@@ -37,7 +38,7 @@ export default function AllProducts() {
   const currentProducts = products.slice(startIndex, startIndex + itemsPerPage);
 
   return (
-    <div className="min-h-screen bg-pink-50 py-16">
+    <div className="min-h-screen bg-pink-50 dark:bg-gray-900 py-16">
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div
@@ -49,7 +50,7 @@ export default function AllProducts() {
           <h1 className="text-4xl font-extrabold bg-gradient-to-r from-pink-600 to-pink-400 bg-clip-text text-transparent">
             All Products
           </h1>
-          <p className="text-gray-600 text-lg mt-2">
+          <p className="text-gray-600 dark:text-gray-400 text-lg mt-2">
             Explore beautiful garments and outfits for every occasion
           </p>
         </motion.div>
@@ -66,7 +67,7 @@ export default function AllProducts() {
               key={product._id}
               whileHover={{ scale: 1.03 }}
               transition={{ type: "spring", stiffness: 200 }}
-              className="rounded-2xl bg-white border border-pink-200 shadow-md overflow-hidden hover:shadow-xl transition"
+              className="rounded-2xl bg-white dark:bg-gray-800 border border-pink-200 dark:border-gray-700 shadow-md overflow-hidden hover:shadow-xl transition"
             >
               <figure className="h-56 overflow-hidden">
                 <img
@@ -84,11 +85,11 @@ export default function AllProducts() {
                   {product.category}
                 </p>
 
-                <p className="text-gray-700">
+                <p className="text-gray-700 dark:text-gray-300">
                   <strong>Price:</strong> ৳{product.price}
                 </p>
 
-                <p className="text-gray-700 mb-4">
+                <p className="text-gray-700 dark:text-gray-300 mb-4">
                   <strong>Available:</strong> {product.quantity}
                 </p>
 
@@ -110,7 +111,7 @@ export default function AllProducts() {
             <button
               disabled={currentPage === 1}
               onClick={() => setCurrentPage((p) => p - 1)}
-              className="px-4 py-2 rounded-lg border border-pink-300 bg-white disabled:opacity-40 hover:bg-pink-100"
+              className="px-4 py-2 rounded-lg border border-pink-300 dark:border-pink-700 bg-white dark:bg-gray-800 dark:text-gray-300 disabled:opacity-40 hover:bg-pink-100 dark:hover:bg-gray-700"
             >
               Previous
             </button>
@@ -134,7 +135,7 @@ export default function AllProducts() {
             <button
               disabled={currentPage === totalPages}
               onClick={() => setCurrentPage((p) => p + 1)}
-              className="px-4 py-2 rounded-lg border border-pink-300 bg-white disabled:opacity-40 hover:bg-pink-100"
+              className="px-4 py-2 rounded-lg border border-pink-300 dark:border-pink-700 bg-white dark:bg-gray-800 dark:text-gray-300 disabled:opacity-40 hover:bg-pink-100 dark:hover:bg-gray-700"
             >
               Next
             </button>

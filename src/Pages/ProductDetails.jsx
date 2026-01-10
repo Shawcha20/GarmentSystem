@@ -41,13 +41,13 @@ export default function ProductDetails() {
   };
 
   return (
-    <div className="min-h-screen bg-pink-50 py-12">
+    <div className="min-h-screen bg-pink-50 dark:bg-gray-900 py-12">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="bg-white p-8 rounded-2xl shadow-lg"
+          className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg dark:shadow-gray-900"
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             {/* PRODUCT IMAGE */}
@@ -60,36 +60,36 @@ export default function ProductDetails() {
 
             {/* PRODUCT INFO */}
             <div>
-              <h1 className="text-4xl font-bold text-gray-800 mb-2">
+              <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-2">
                 {product.name}
               </h1>
               <p className="text-pink-500 font-semibold text-lg mb-4">
                 {product.category}
               </p>
 
-              <p className="text-gray-700 mb-6">{product.description}</p>
+              <p className="text-gray-700 dark:text-gray-300 mb-6">{product.description}</p>
 
               {/* DETAILS */}
               <div className="space-y-4">
                 <p>
-                  <strong className="text-gray-800">Price:</strong>{" "}
-                  <span className="text-pink-600 font-bold">
+                  <strong className="text-gray-800 dark:text-gray-300">Price:</strong>{" "}
+                  <span className="text-pink-600 dark:text-pink-400 font-bold">
                     ৳{product.price}
                   </span>
                 </p>
 
                 <p>
-                  <strong className="text-gray-800">Available Quantity:</strong>{" "}
+                  <strong className="text-gray-800 dark:text-gray-300">Available Quantity:</strong>{" "}
                   {product.quantity}
                 </p>
 
                 <p>
-                  <strong className="text-gray-800">Minimum Order:</strong>{" "}
+                  <strong className="text-gray-800 dark:text-gray-300">Minimum Order:</strong>{" "}
                   {product.minOrder}
                 </p>
 
                 <p>
-                  <strong className="text-gray-800">Payment Options:</strong>{" "}
+                  <strong className="text-gray-800 dark:text-gray-300">Payment Options:</strong>{" "}
                   {product.paymentOption}
                 </p>
               </div>

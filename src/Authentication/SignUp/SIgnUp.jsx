@@ -57,7 +57,7 @@ export default function Signup() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-pink-100 via-pink-50 to-white px-4 relative">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-pink-100 via-pink-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 px-4 relative">
       {/* Soft pattern background */}
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
 
@@ -65,13 +65,13 @@ export default function Signup() {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="w-full max-w-md bg-white/80 backdrop-blur-md border border-pink-200 rounded-2xl p-8 shadow-xl relative z-10"
+        className="w-full max-w-md bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border border-pink-200 dark:border-gray-700 rounded-2xl p-8 shadow-xl relative z-10"
       >
         {/* Title */}
         <h2 className="text-4xl font-extrabold text-center bg-gradient-to-r from-pink-500 to-pink-400 bg-clip-text text-transparent mb-3">
           Join GarmentsGear
         </h2>
-        <p className="text-center text-gray-600 mb-8">
+        <p className="text-center text-gray-600 dark:text-gray-300 mb-8">
           Create your account to start exploring beautiful outfits.
         </p>
 
@@ -79,49 +79,49 @@ export default function Signup() {
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Name */}
           <div>
-            <label className="block text-sm text-gray-700 mb-1">
+            <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
               Full Name
             </label>
             <input
               type="text"
               name="name"
               placeholder="Your Name"
-              className="input input-bordered w-full bg-white/90 border-pink-300 focus:ring-2 focus:ring-pink-400"
+              className="input input-bordered w-full bg-white/90 dark:bg-gray-700 dark:text-white border-pink-300 dark:border-gray-600 focus:ring-2 focus:ring-pink-400"
               required
             />
           </div>
 
           {/* Email */}
           <div>
-            <label className="block text-sm text-gray-700 mb-1">Email</label>
+            <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1">Email</label>
             <input
               type="email"
               name="email"
               placeholder="you@example.com"
-              className="input input-bordered w-full bg-white/90 border-pink-300 focus:ring-2 focus:ring-pink-400"
+              className="input input-bordered w-full bg-white/90 dark:bg-gray-700 dark:text-white border-pink-300 dark:border-gray-600 focus:ring-2 focus:ring-pink-400"
               required
             />
           </div>
 
           {/* Photo URL */}
           <div>
-            <label className="block text-sm text-gray-700 mb-1">
+            <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
               Photo URL
             </label>
             <input
               type="text"
               name="photoURL"
               placeholder="https://your-photo.com"
-              className="input input-bordered w-full bg-white/90 border-pink-300 focus:ring-2 focus:ring-pink-400"
+              className="input input-bordered w-full bg-white/90 dark:bg-gray-700 dark:text-white border-pink-300 dark:border-gray-600 focus:ring-2 focus:ring-pink-400"
             />
           </div>
 
           {/* Role Dropdown */}
           <div>
-            <label className="block text-sm text-gray-700 mb-1">Role</label>
+            <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1">Role</label>
             <select
               name="role"
-              className="select select-bordered w-full bg-white/90 border-pink-300 focus:ring-2 focus:ring-pink-400"
+              className="select select-bordered w-full bg-white/90 dark:bg-gray-700 dark:text-white border-pink-300 dark:border-gray-600 focus:ring-2 focus:ring-pink-400"
               required
             >
               <option value="buyer">Buyer</option>
@@ -131,29 +131,29 @@ export default function Signup() {
 
           {/* Status (read-only default) */}
           <div>
-            <label className="block text-sm text-gray-700 mb-1">Status</label>
+            <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1">Status</label>
             <input
               type="text"
               value="pending"
               disabled
-              className="input input-bordered w-full bg-gray-100 border-pink-300 text-gray-500"
+              className="input input-bordered w-full bg-gray-100 dark:bg-gray-700 dark:text-gray-400 border-pink-300 dark:border-gray-600 text-gray-500"
             />
           </div>
 
           {/* Password */}
           <div className="relative">
-            <label className="block text-sm text-gray-700 mb-1">Password</label>
+            <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1">Password</label>
             <input
               type={showPassword ? "text" : "password"}
               name="password"
               placeholder="Enter your password"
-              className="input input-bordered w-full bg-white/90 border-pink-300 focus:ring-2 focus:ring-pink-400 pr-10"
+              className="input input-bordered w-full bg-white/90 dark:bg-gray-700 dark:text-white border-pink-300 dark:border-gray-600 focus:ring-2 focus:ring-pink-400 pr-10"
               required
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-9 z-10 text-gray-400 hover:text-blue-400"
+              className="absolute right-3 top-9 z-10 text-gray-400 dark:text-gray-500 hover:text-blue-400"
             >
               {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
@@ -180,9 +180,9 @@ export default function Signup() {
         </form>
 
         {/* Footer Link */}
-        <p className="text-center text-sm mt-6 text-gray-700">
+        <p className="text-center text-sm mt-6 text-gray-700 dark:text-gray-300">
           Already have an account?{" "}
-          <Link to="/login" className="text-pink-500 underline font-semibold">
+          <Link to="/login" className="text-pink-500 dark:text-pink-400 underline font-semibold">
             Login
           </Link>
         </p>

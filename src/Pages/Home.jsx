@@ -10,7 +10,7 @@ import WhyChooseUs from '../Components/WhyChooseUs'
 
 export default function Home() {
   return (
-    <div>
+    <div className="dark:bg-gray-900">
       <HeroBanner></HeroBanner>
       <OurProducts></OurProducts>
       <HowItWorks></HowItWorks>

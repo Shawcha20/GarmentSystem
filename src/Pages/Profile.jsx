@@ -17,14 +17,14 @@ export default function Profile() {
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-white shadow rounded-xl p-6"
+        className="bg-white dark:bg-gray-800 shadow dark:shadow-gray-900 rounded-xl p-6 dark:text-white"
       >
-        <h2 className="text-3xl font-bold text-pink-600 mb-6">
+        <h2 className="text-3xl font-bold text-pink-600 dark:text-pink-400 mb-6">
           My Profile
         </h2>
 
         {/* BASIC INFO */}
-        <div className="space-y-2 text-gray-700">
+        <div className="space-y-2 text-gray-700 dark:text-gray-300">
           <p>
             <strong>Name:</strong>{" "}
             {user?.displayName || "N/A"}
@@ -55,22 +55,22 @@ export default function Profile() {
 
         {/* ================= SUSPENDED WARNING ================= */}
         {isSuspended && suspendInfo && (
-          <div className="mt-6 border border-red-200 bg-red-50 rounded-lg p-4">
-            <h3 className="text-lg font-semibold text-red-600 mb-2">
+          <div className="mt-6 border border-red-200 dark:border-red-700 bg-red-50 dark:bg-red-900/20 rounded-lg p-4">
+            <h3 className="text-lg font-semibold text-red-600 dark:text-red-400 mb-2">
               Account Suspended
             </h3>
 
-            <p className="text-sm text-gray-700 mb-1">
+            <p className="text-sm text-gray-700 dark:text-gray-300 mb-1">
               <strong>Reason:</strong>{" "}
               {suspendInfo.reason || "Not specified"}
             </p>
 
-            <p className="text-sm text-gray-700 mb-2">
+            <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
               <strong>Admin Message:</strong>{" "}
               {suspendInfo.feedback || "No details provided"}
             </p>
 
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-gray-500 dark:text-gray-400">
               Suspended on{" "}
               {new Date(
                 suspendInfo.suspendedAt
@@ -78,7 +78,7 @@ export default function Profile() {
             </p>
 
             {/* ROLE-BASED EFFECT MESSAGE */}
-            <div className="mt-3 text-sm text-red-700">
+            <div className="mt-3 text-sm text-red-700 dark:text-red-400">
               {role === "buyer" && (
                 <ul className="list-disc pl-5">
                   <li>You cannot place new orders</li>
@@ -100,7 +100,7 @@ export default function Profile() {
         {/* LOGOUT */}
         <button
           onClick={userSignOut}
-          className="btn btn-error text-white w-full mt-6"
+          className="btn btn-error hover:btn-error dark:bg-red-700 dark:hover:bg-red-800 text-white w-full mt-6"
         >
           Logout
         </button>

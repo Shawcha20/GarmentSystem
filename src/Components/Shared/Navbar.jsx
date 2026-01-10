@@ -63,7 +63,7 @@ export default function Navbar() {
   );
 
   return (
-    <nav className="navbar bg-white/70 backdrop-blur-xl shadow-lg sticky top-0 z-50 px-4 lg:px-10 border-b border-pink-100">
+    <nav className="navbar bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl shadow-lg dark:shadow-gray-800 sticky top-0 z-50 px-4 lg:px-10 border-b border-pink-100 dark:border-gray-700">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden text-pink-500">
@@ -85,7 +85,7 @@ export default function Navbar() {
 
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-20 p-4 shadow-xl bg-white/90 rounded-xl w-52 border border-pink-200"
+            className="menu menu-sm dropdown-content mt-3 z-20 p-4 shadow-xl bg-white/90 dark:bg-gray-800/90 rounded-xl w-52 border border-pink-200 dark:border-gray-700"
           >
             {links}
           </ul>
@@ -107,14 +107,14 @@ export default function Navbar() {
             <path d="M2 17h20" />
           </svg>
 
-          <span className="text-2xl font-extrabold text-gray-700">
+          <span className="text-2xl font-extrabold text-gray-700 dark:text-white">
             Cloth<span className="text-pink-500">Rent</span>
           </span>
         </Link>
       </div>
 
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal gap-6 text-gray-600 font-medium">
+        <ul className="menu menu-horizontal gap-6 text-gray-600 dark:text-gray-300 font-medium">
           {links}
         </ul>
       </div>
@@ -122,8 +122,8 @@ export default function Navbar() {
       <div className="navbar-end">
         {user ? (
           <div className="flex">
-            <button className="btn btn-circle btn-ghost w-12 h-12 p-0 hover:bg-pink-50">
-              <div className="w-10 h-10 rounded-full border-2 border-pink-300 bg-pink-100 flex items-center justify-center text-pink-500 font-bold overflow-hidden shadow-md">
+            <button className="btn btn-circle btn-ghost w-12 h-12 p-0 hover:bg-pink-50 dark:hover:bg-gray-700">
+              <div className="w-10 h-10 rounded-full border-2 border-pink-300 dark:border-pink-600 bg-pink-100 dark:bg-pink-900/40 flex items-center justify-center text-pink-500 dark:text-pink-400 font-bold overflow-hidden shadow-md">
                 {user.photoURL ? (
                   <img
                     src={user.photoURL}
@@ -137,7 +137,7 @@ export default function Navbar() {
             </button>
             <button
               onClick={handleSignOut}
-              className="w-full text-left px-2 py-2 rounded-md text-pink-600 hover:bg-pink-50"
+              className="w-full text-left px-2 py-2 rounded-md text-pink-600 dark:text-pink-400 hover:bg-pink-50 dark:hover:bg-gray-700"
             >
               Logout
             </button>

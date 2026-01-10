@@ -80,7 +80,7 @@ const handleGoogle = async () => {
 };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-pink-100 via-pink-50 to-white px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-pink-100 via-pink-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 px-4">
       {/* Soft Floral Background Pattern */}
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
 
@@ -88,21 +88,21 @@ const handleGoogle = async () => {
         initial={{ opacity: 0, y: 25 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="w-full max-w-md bg-white/80 backdrop-blur-md border border-pink-200 rounded-2xl p-8 shadow-xl relative z-10"
+        className="w-full max-w-md bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border border-pink-200 dark:border-gray-700 rounded-2xl p-8 shadow-xl relative z-10"
       >
         {/* Logo */}
         <h2 className="text-4xl font-extrabold text-center bg-gradient-to-r from-pink-500 to-pink-400 bg-clip-text text-transparent mb-2">
           GarmentsGear
         </h2>
 
-        <p className="text-center text-gray-600 mb-8">
+        <p className="text-center text-gray-600 dark:text-gray-300 mb-8">
           Login to continue exploring outfits
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Email */}
           <div>
-            <label className="block text-sm text-gray-600 mb-1">Email</label>
+            <label className="block text-sm text-gray-600 dark:text-gray-300 mb-1">Email</label>
             <input
               type="email"
               placeholder="Enter your email"
@@ -110,14 +110,14 @@ const handleGoogle = async () => {
               onChange={(e) =>
                 setForm({ ...form, email: e.target.value })
               }
-              className="input input-bordered w-full bg-white/80 border-pink-300 focus:ring-2 focus:ring-pink-400"
+              className="input input-bordered w-full bg-white/80 dark:bg-gray-700 dark:text-white border-pink-300 dark:border-gray-600 focus:ring-2 focus:ring-pink-400"
             />
             {error.email && <p className="text-red-500 text-sm">{error.email}</p>}
           </div>
 
           {/* Password */}
           <div>
-            <label className="block text-sm text-gray-600 mb-1">Password</label>
+            <label className="block text-sm text-gray-600 dark:text-gray-300 mb-1">Password</label>
             <div className="relative">
               <input
                 type={show ? "text" : "password"}
@@ -126,12 +126,12 @@ const handleGoogle = async () => {
                 onChange={(e) =>
                   setForm({ ...form, password: e.target.value })
                 }
-                className="input input-bordered w-full bg-white/80 border-pink-300 focus:ring-2 focus:ring-pink-400 pr-10"
+                className="input input-bordered w-full bg-white/80 dark:bg-gray-700 dark:text-white border-pink-300 dark:border-gray-600 focus:ring-2 focus:ring-pink-400 pr-10"
               />
               <button
                 type="button"
                 onClick={() => setShow(!show)}
-                className="absolute right-3 top-3 text-gray-500"
+                className="absolute right-3 top-3 text-gray-500 dark:text-gray-400"
               >
                 {show ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
@@ -154,20 +154,20 @@ const handleGoogle = async () => {
         </form>
 
         {/* Divider */}
-        <div className="divider text-gray-400">OR</div>
+        <div className="divider text-gray-400 dark:text-gray-600">OR</div>
 
         {/* Google Login */}
         <button
           onClick={handleGoogle}
-          className="btn btn-outline border-pink-300 text-gray-700 hover:bg-pink-50 w-full flex items-center justify-center gap-2"
+          className="btn btn-outline border-pink-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-pink-50 dark:hover:bg-gray-700 w-full flex items-center justify-center gap-2"
         >
           <FcGoogle size={22} /> Continue with Google
         </button>
 
         {/* Register Link */}
-        <p className="text-center text-sm mt-6 text-gray-700">
-          Don’t have an account?{" "}
-          <Link to="/register" className="text-pink-500 font-semibold underline">
+        <p className="text-center text-sm mt-6 text-gray-700 dark:text-gray-300">
+          Don't have an account?{" "}
+          <Link to="/register" className="text-pink-500 dark:text-pink-400 font-semibold underline">
             Sign up
           </Link>
         </p>

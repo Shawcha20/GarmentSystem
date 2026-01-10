@@ -42,69 +42,69 @@ export default function PaymentPage() {
   };
 
   return (
-    <div className="min-h-screen bg-pink-50 py-16 px-4 flex justify-center">
+    <div className="min-h-screen bg-pink-50 dark:bg-gray-900 py-16 px-4 flex justify-center">
       <motion.div
         initial={{ opacity: 0, y: 25 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-lg"
+        className="bg-white dark:bg-gray-800 shadow-lg dark:shadow-gray-900 rounded-2xl p-8 w-full max-w-lg"
       >
-        <h2 className="text-3xl font-bold text-center text-pink-600 mb-6">
+        <h2 className="text-3xl font-bold text-center text-pink-600 dark:text-pink-400 mb-6">
           Secure Payment
         </h2>
 
-        <p className="text-center text-gray-600 mb-6">
+        <p className="text-center text-gray-600 dark:text-gray-300 mb-6">
           Pay for <strong>{product.name}</strong>
         </p>
 
         {/* Payment Form */}
         <form onSubmit={handlePayment} className="space-y-5">
           <div>
-            <label className="font-semibold">Card Holder Name</label>
+            <label className="font-semibold dark:text-gray-300">Card Holder Name</label>
             <input
               type="text"
               required
               placeholder="John Doe"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full bg-white dark:bg-gray-700 dark:text-white border-gray-300 dark:border-gray-600"
             />
           </div>
 
           <div>
-            <label className="font-semibold">Card Number</label>
+            <label className="font-semibold dark:text-gray-300">Card Number</label>
             <input
               type="text"
               required
               placeholder="4242 4242 4242 4242"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full bg-white dark:bg-gray-700 dark:text-white border-gray-300 dark:border-gray-600"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="font-semibold">Expiry</label>
+              <label className="font-semibold dark:text-gray-300">Expiry</label>
               <input
                 type="text"
                 required
                 placeholder="MM/YY"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full bg-white dark:bg-gray-700 dark:text-white border-gray-300 dark:border-gray-600"
               />
             </div>
 
             <div>
-              <label className="font-semibold">CVC</label>
+              <label className="font-semibold dark:text-gray-300">CVC</label>
               <input
                 type="text"
                 required
                 placeholder="123"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full bg-white dark:bg-gray-700 dark:text-white border-gray-300 dark:border-gray-600"
               />
             </div>
           </div>
 
           {/* Amount */}
-          <div className="bg-pink-100 p-4 rounded-lg text-center">
-            <p className="text-gray-700">Amount to Pay:</p>
-            <p className="text-3xl font-bold text-pink-600 mt-1">
+          <div className="bg-pink-100 dark:bg-gray-700 p-4 rounded-lg text-center">
+            <p className="text-gray-700 dark:text-gray-300">Amount to Pay:</p>
+            <p className="text-3xl font-bold text-pink-600 dark:text-pink-400 mt-1">
               ৳{product.price}
             </p>
           </div>

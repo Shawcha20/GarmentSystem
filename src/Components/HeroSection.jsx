@@ -14,7 +14,7 @@ export default function HeroBanner() {
             "url('https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=1400&q=80')",
         }}
       >
-        <div className="absolute inset-0 bg-pink-200/20 backdrop-blur-[1px]"></div>
+        <div className="absolute inset-0 bg-pink-200/20 dark:bg-gray-900/50 backdrop-blur-[1px]\"></div>
       </div>
 
       {/* Text Content */}
@@ -25,7 +25,7 @@ export default function HeroBanner() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl font-extrabold text-gray-800 drop-shadow-md"
+            className="text-4xl md:text-6xl font-extrabold text-gray-800 dark:text-white drop-shadow-md"
           >
             Elevate Your Style with Premium Outfits
           </motion.h1>

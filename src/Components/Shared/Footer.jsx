@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 export default function Footer() {
   const location = useLocation();
@@ -10,7 +11,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-pink-50 text-gray-700 pt-14 pb-10 border-t border-pink-200">
+    <footer className="bg-pink-50 dark:bg-gray-900 text-gray-700 dark:text-gray-300 pt-14 pb-10 border-t border-pink-200 dark:border-gray-700">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
           <div>
@@ -34,14 +35,14 @@ export default function Footer() {
               </svg>
               ClothRent
             </Link>
-            <p className="text-sm text-gray-600 leading-relaxed">
+            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
               A stylish and elegant clothing rental platform offering premium
               outfits for every occasion.
             </p>
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold text-pink-600 mb-4">
+            <h3 className="text-lg font-semibold text-pink-600 dark:text-pink-400 mb-4">
               Quick Links
             </h3>
             <ul className="space-y-2">
@@ -51,7 +52,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/add-car" className="hover:text-pink-500 transition">
+                <Link to="/add-car" className="hover:text-pink-500 dark:hover:text-pink-400 transition">
                   All Products
                 </Link>
               </li>
@@ -75,10 +76,10 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold text-pink-600 mb-4">
+            <h3 className="text-lg font-semibold text-pink-600 dark:text-pink-400 mb-4">
               Contact Info
             </h3>
-            <ul className="space-y-2 text-sm text-gray-600">
+            <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
               <li>📞 +880 1234 567 890</li>
               <li>📧 support@garmentsgear.com</li>
               <li>📍 Dhaka, Bangladesh</li>
@@ -87,26 +88,44 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold text-pink-600 mb-4">
+            <h3 className="text-lg font-semibold text-pink-600 dark:text-pink-400 mb-4">
               Follow Us
             </h3>
             <div className="flex gap-4 text-2xl items-center">
               {/* Instagram */}
-              <a href="#" className="hover:text-pink-500 transition">
-                📸
+              <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-pink-500 transition"
+                aria-label="Instagram"
+              >
+                <FaInstagram />
               </a>
 
               {/* Facebook */}
-              <a href="#" className="hover:text-pink-500 transition">
-                📘
+              <a
+                href="https://www.facebook.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-pink-500 transition"
+                aria-label="Facebook"
+              >
+                <FaFacebookF />
               </a>
 
-              {/* LinkedIn */}
-              <a href="#" className="hover:text-pink-500 transition">
-                💼
+              {/* LinkedIn (optional) */}
+              <a
+                href="https://www.linkedin.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-pink-500 transition"
+                aria-label="LinkedIn"
+              >
+                <FaLinkedinIn />
               </a>
 
-              {/* X (Twitter) */}
+              {/* X (Twitter) — unchanged */}
               <a
                 href="#"
                 aria-label="X (Twitter)"
@@ -122,11 +141,12 @@ export default function Footer() {
                 </svg>
               </a>
             </div>
+
           </div>
         </div>
 
-        <div className="border-t border-pink-200 pt-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
+        <div className="border-t border-pink-200 dark:border-gray-700 pt-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600 dark:text-gray-400">
             <p>&copy; 2024 GarmentsGear. All rights reserved.</p>
 
             <div className="flex gap-4 md:justify-end">

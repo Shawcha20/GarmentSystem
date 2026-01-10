@@ -35,7 +35,7 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section className="py-20 bg-pink-50">
+    <section className="py-20 bg-pink-50 dark:bg-gray-900">
       <div className="container mx-auto px-6">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -52,7 +52,7 @@ export default function HowItWorks() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-center text-gray-600 mb-14 text-lg"
+          className="text-center text-gray-600 dark:text-gray-300 mb-14 text-lg"
         >
           Renting your favorite outfits has never been this easy.
         </motion.p>
@@ -65,13 +65,13 @@ export default function HowItWorks() {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="bg-white rounded-2xl shadow-lg p-8 text-center border border-pink-100 hover:shadow-2xl transition"
+              className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg dark:shadow-gray-800 p-8 text-center border border-pink-100 dark:border-gray-700 hover:shadow-2xl transition"
             >
               <div className="mb-5 flex justify-center">{step.icon}</div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
                 {step.title}
               </h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
                 {step.description}
               </p>
             </motion.div>

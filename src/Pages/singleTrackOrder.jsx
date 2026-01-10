@@ -28,12 +28,12 @@ export default function SingleTrackOrder() {
 
   return (
     <div className="p-6 w-full">
-      <h2 className="text-3xl font-bold text-pink-600 mb-4">
+      <h2 className="text-3xl font-bold text-pink-600 dark:text-pink-400 mb-4">
         Order Tracking
       </h2>
 
       {tracking.length === 0 ? (
-        <p>No tracking updates yet.</p>
+        <p className="dark:text-gray-300">No tracking updates yet.</p>
       ) : (
         <div className="space-y-6">
           {tracking.map((step, index) => (
@@ -43,14 +43,14 @@ export default function SingleTrackOrder() {
               animate={{ opacity: 1, x: 0 }}
               className={`p-6 rounded-xl border-l-4 shadow ${
                 index === lastIndex
-                  ? "border-pink-500 bg-pink-50"
-                  : "border-gray-300 bg-white"
-              }`}
+                  ? "border-pink-500 bg-pink-50 dark:bg-pink-900/20"
+                  : "border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800"
+              } dark:text-white`}
             >
               <h4 className="font-bold">{step.status}</h4>
-              <p>🕒 {new Date(step.time).toLocaleString()}</p>
-              <p>📍 {step.location}</p>
-              {step.note && <p>📝 {step.note}</p>}
+              <p className="dark:text-gray-300">🕒 {new Date(step.time).toLocaleString()}</p>
+              <p className="dark:text-gray-300">📍 {step.location}</p>
+              {step.note && <p className="dark:text-gray-300">📝 {step.note}</p>}
             </motion.div>
           ))}
         </div>

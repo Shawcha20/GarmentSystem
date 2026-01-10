@@ -1,2 +1,133 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+/* ========================================
+   COLOR SYSTEM - CSS VARIABLES
+   ======================================== */
+
+:root {
+  /* ===== PRIMARY (PINK) ===== */
+  --color-primary-50: #fdf2f8;
+  --color-primary-100: #fce7f3;
+  --color-primary-200: #fbcfe8;
+  --color-primary-300: #f9a8d4;
+  --color-primary-400: #f472b6;
+  --color-primary-500: #ec4899;
+  --color-primary-600: #db2777;
+  --color-primary-700: #be185d;
+  --color-primary-800: #9d174d;
+  --color-primary-900: #831843;
+
+  /* ===== NEUTRAL ===== */
+  --color-bg-main: #ffffff;
+  --color-bg-soft: #fdf4f8;
+  --color-bg-card: #ffffff;
+
+  --color-text-primary: #1f2937;
+  --color-text-secondary: #4b5563;
+  --color-text-muted: #9ca3af;
+
+  --color-border: #fbcfe8;
+  --color-border-soft: #fce7f3;
+
+  --color-input-bg: #ffffff;
+}
+
+
+/* ========================================
+   TAILWIND COLOR CLASS EXTENSIONS
+   Can be used with: bg-, text-, border-, etc.
+   Example: class="bg-primary-500" or "text-secondary-700"
+   ======================================== */
+
+.dark {
+  /* ===== PRIMARY (ROSE PINK – MUTED) ===== */
+  --color-primary-50: #2a0e1d;
+  --color-primary-100: #3b1127;
+  --color-primary-200: #5a1739;
+  --color-primary-300: #7a1d4b;
+  --color-primary-400: #c0266a;
+  --color-primary-500: #ec4899;
+  --color-primary-600: #f472b6;
+  --color-primary-700: #f9a8d4;
+  --color-primary-800: #fbcfe8;
+  --color-primary-900: #fdf2f8;
+
+  /* ===== BACKGROUNDS ===== */
+  --color-bg-main: #0f1115;       /* page background */
+  --color-bg-soft: #161923;       /* sections */
+  --color-bg-card: #1b1f2a;       /* cards / forms */
+
+  /* ===== TEXT ===== */
+  --color-text-primary: #f3f4f6;
+  --color-text-secondary: #d1d5db;
+  --color-text-muted: #9ca3af;
+
+  /* ===== BORDERS ===== */
+  --color-border: #2a2f3d;
+  --color-border-soft: #232837;
+
+  /* ===== INPUTS ===== */
+  --color-input-bg: #141826;
+}
+
+@layer components {
+
+  /* ===== TEXT ===== */
+  .text-primary {
+    color: var(--color-text-primary);
+  }
+
+  .text-secondary {
+    color: var(--color-text-secondary);
+  }
+
+  .text-tertiary {
+    color: var(--color-text-muted);
+  }
+
+  /* ===== BACKGROUND ===== */
+  .bg-primary {
+    background-color: var(--color-bg-main);
+  }
+
+  .bg-secondary {
+    background-color: var(--color-bg-soft);
+  }
+
+  .bg-card {
+    background-color: var(--color-bg-card);
+  }
+
+  /* ===== BORDER ===== */
+  .border-primary {
+    border-color: var(--color-border);
+  }
+
+  /* ===== BUTTON (PINK CTA) ===== */
+  .btn-primary {
+    @apply font-semibold rounded-lg;
+    background-color: var(--color-primary-500);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-primary-600);
+  }
+
+  /* ===== INPUT ===== */
+  .input-primary {
+    background-color: var(--color-input-bg);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Smooth transitions for color changes */
+* {
+  @apply transition-colors duration-200;
+}

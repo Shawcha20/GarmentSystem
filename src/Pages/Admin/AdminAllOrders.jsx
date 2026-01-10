@@ -65,10 +65,10 @@ export default function AdminAllOrders() {
   if (loading) return <LoadingSpinner />;
 
   return (
-    <div className="p-6 w-full space-y-10">
+    <div className="p-6 w-full space-y-10 bg-gray-50 dark:bg-gray-800 rounded-lg">
       {/* ================= HEADER ================= */}
       <div className="flex justify-between items-center">
-        <h2 className="text-3xl font-bold text-pink-600">
+        <h2 className="text-3xl font-bold text-pink-600 dark:text-pink-400">
           All Orders (Admin)
         </h2>
 
@@ -86,8 +86,8 @@ export default function AdminAllOrders() {
       </div>
 
       {/* ================= PIE CHART ================= */}
-      <div className="bg-white rounded-xl shadow p-6">
-        <h3 className="text-xl font-semibold mb-4 text-gray-700">
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow dark:shadow-gray-900 p-6">
+        <h3 className="text-xl font-semibold mb-4 text-gray-700 dark:text-white">
           Order Status Overview {filteredOrders.length}
         </h3>
 
@@ -118,9 +118,9 @@ export default function AdminAllOrders() {
       </div>
 
       {/* ================= TABLE ================= */}
-      <div className="overflow-x-auto bg-white rounded-xl shadow">
+      <div className="overflow-x-auto bg-white dark:bg-gray-800 rounded-xl shadow dark:shadow-gray-900">
         <table className="table">
-          <thead className="bg-pink-100">
+          <thead className="bg-pink-100 dark:bg-gray-700">
             <tr>
               <th>Order ID</th>
               <th>User</th>
@@ -169,7 +169,7 @@ export default function AdminAllOrders() {
         </table>
 
         {filteredOrders.length === 0 && (
-          <p className="text-center text-gray-500 py-6">
+          <p className="text-center text-gray-500 dark:text-gray-400 py-6">
             No orders found
           </p>
         )}

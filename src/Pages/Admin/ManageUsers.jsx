@@ -65,14 +65,14 @@ export default function ManageUsers() {
   };
 
   return (
-    <div className="p-6 w-full">
-      <h2 className="text-3xl font-bold text-pink-600 mb-6">
+    <div className="p-6 w-full bg-gray-50 dark:bg-gray-800 rounded-lg">
+      <h2 className="text-3xl font-bold text-pink-600 dark:text-pink-400 mb-6">
         Manage Users ({users.length})
       </h2>
 
-      <div className="overflow-x-auto bg-white rounded-xl shadow">
+      <div className="overflow-x-auto bg-white dark:bg-gray-800 rounded-xl shadow dark:shadow-gray-900">
         <table className="table">
-          <thead className="bg-pink-100">
+          <thead className="bg-pink-100 dark:bg-gray-700">
             <tr>
               <th>Name</th>
               <th>Email</th>
@@ -128,13 +128,13 @@ export default function ManageUsers() {
       {/* ================= MODAL ================= */}
       {selectedUser && (
         <dialog open className="modal">
-          <div className="modal-box max-w-lg">
+          <div className="modal-box max-w-lg bg-white dark:bg-gray-800 dark:text-white">
             <h3 className="font-bold text-lg mb-4">
               Update User
             </h3>
 
             {/* ROLE */}
-            <label className="block mb-2 font-semibold">
+            <label className="block mb-2 font-semibold dark:text-gray-300">
               Role
             </label>
             <select
@@ -145,7 +145,7 @@ export default function ManageUsers() {
                   role: e.target.value,
                 })
               }
-              className="select select-bordered w-full mb-4"
+              className="select select-bordered w-full mb-4 dark:bg-gray-700 dark:text-white"
             >
               <option value="buyer">Buyer</option>
               <option value="manager">Manager</option>
@@ -153,7 +153,7 @@ export default function ManageUsers() {
             </select>
 
             {/* STATUS */}
-            <label className="block mb-2 font-semibold">
+            <label className="block mb-2 font-semibold dark:text-gray-300">
               Status
             </label>
             <select
@@ -164,7 +164,7 @@ export default function ManageUsers() {
                   status: e.target.value,
                 })
               }
-              className="select select-bordered w-full mb-4"
+              className="select select-bordered w-full mb-4 dark:bg-gray-700 dark:text-white"
             >
               <option value="active">Active</option>
               <option value="suspended">Suspended</option>
@@ -173,7 +173,7 @@ export default function ManageUsers() {
             {/* SUSPEND DETAILS */}
             {selectedUser.status === "suspended" && (
               <>
-                <label className="block mb-2 font-semibold">
+                <label className="block mb-2 font-semibold dark:text-gray-300">
                   Suspend Reason
                 </label>
                 <input
@@ -186,10 +186,10 @@ export default function ManageUsers() {
                       suspendReason: e.target.value,
                     })
                   }
-                  className="input input-bordered w-full mb-3"
+                  className="input input-bordered w-full mb-3 dark:bg-gray-700 dark:text-white"
                 />
 
-                <label className="block mb-2 font-semibold">
+                <label className="block mb-2 font-semibold dark:text-gray-300">
                   Admin Feedback
                 </label>
                 <textarea
@@ -201,7 +201,7 @@ export default function ManageUsers() {
                       suspendFeedback: e.target.value,
                     })
                   }
-                  className="textarea textarea-bordered w-full"
+                  className="textarea textarea-bordered w-full dark:bg-gray-700 dark:text-white"
                 />
               </>
             )}
@@ -215,7 +215,7 @@ export default function ManageUsers() {
                 Cancel
               </button>
               <button
-                className="btn bg-pink-500 text-white"
+                className="btn bg-pink-500 hover:bg-pink-600 dark:bg-pink-600 dark:hover:bg-pink-700 text-white"
                 onClick={handleUpdateUser}
               >
                 Save

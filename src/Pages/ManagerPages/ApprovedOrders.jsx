@@ -39,13 +39,13 @@ export default function ApprovedOrders() {
   };
 
   return (
-    <div className="p-6 w-full">
-      <h2 className="text-3xl font-bold text-pink-600 mb-6">
+    <div className="p-6 w-full bg-gray-50 dark:bg-gray-800 rounded-lg">
+      <h2 className="text-3xl font-bold text-pink-600 dark:text-pink-400 mb-6">
         Approved Orders({orders.length})
       </h2>
 
-      <table className="table bg-white shadow rounded-xl">
-        <thead className="bg-pink-100">
+      <table className="table bg-white dark:bg-gray-800 shadow dark:shadow-gray-900 rounded-xl">
+        <thead className="bg-pink-100 dark:bg-gray-700">
           <tr>
             <th>Order</th>
             <th>User</th>
@@ -85,13 +85,13 @@ export default function ApprovedOrders() {
       {/* ===== TRACKING MODAL ===== */}
       {selectedOrder && (
         <dialog open className="modal">
-          <div className="modal-box">
+          <div className="modal-box bg-white dark:bg-gray-800 dark:text-white">
             <h3 className="font-bold text-lg mb-4">
               Add Tracking Update
             </h3>
 
             <select
-              className="select select-bordered w-full mb-3"
+              className="select select-bordered w-full mb-3 dark:bg-gray-700 dark:text-white"
               onChange={(e) =>
                 setTracking({ ...tracking, status: e.target.value })
               }

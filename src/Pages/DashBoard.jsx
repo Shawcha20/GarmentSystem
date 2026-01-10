@@ -4,9 +4,9 @@ import { Outlet } from 'react-router-dom'
 
 export default function DashBoard() {
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900">
       <DashboardSidebar />
-      <div className="flex-1 w-full overflow-x-auto p-4">
+      <div className="flex-1 w-full overflow-x-auto p-4 bg-gray-50 dark:bg-gray-800">
         <Outlet />
       </div>
     </div>

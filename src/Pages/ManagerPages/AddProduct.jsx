@@ -44,21 +44,21 @@ export default function AddProduct() {
   };
 
   return (
-    <div className="flex-1 min-h-screen bg-pink-50 p-8">
+    <div className="flex-1 min-h-screen bg-pink-50 dark:bg-gray-900 p-8">
       <motion.div
         initial={{ opacity: 0, y: 25 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8"
+        className="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-lg dark:shadow-gray-900 p-8"
       >
-        <h2 className="text-3xl font-bold text-pink-600 mb-6">
+        <h2 className="text-3xl font-bold text-pink-600 dark:text-pink-400 mb-6">
           Add New Product
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Product Name */}
           <div>
-            <label className="font-semibold">Product Name</label>
+            <label className="font-semibold dark:text-gray-300">Product Name</label>
             <input
               type="text"
               required
@@ -70,7 +70,7 @@ export default function AddProduct() {
 
           {/* Description */}
           <div>
-            <label className="font-semibold">Description</label>
+            <label className="font-semibold dark:text-gray-300">Description</label>
             <textarea
               required
               className="textarea textarea-bordered w-full"
@@ -81,8 +81,8 @@ export default function AddProduct() {
 
           {/* Category */}
           <div>
-            <label className="font-semibold">Category</label>
-            <select className="select select-bordered w-full" required name="p_category">
+            <label className="font-semibold dark:text-gray-300">Category</label>
+            <select className="select select-bordered w-full dark:bg-gray-700 dark:text-white" required name="p_category">
               <option value="">Select Category</option>
               <option>Shirt</option>
               <option>Pant</option>
@@ -94,21 +94,21 @@ export default function AddProduct() {
           {/* Price & Quantity */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="font-semibold">Price</label>
+              <label className="font-semibold dark:text-gray-300">Price</label>
               <input
                 type="number"
                 required
-                className="input input-bordered w-full"
+                className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
                 name="p_price"
               />
             </div>
 
             <div>
-              <label className="font-semibold">Available Quantity</label>
+              <label className="font-semibold dark:text-gray-300">Available Quantity</label>
               <input
                 type="number"
                 required
-                className="input input-bordered w-full"
+                className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
                 name="p_quantity"
               />
             </div>
@@ -116,18 +116,18 @@ export default function AddProduct() {
 
           {/* MOQ */}
           <div>
-            <label className="font-semibold">Minimum Order Quantity</label>
+            <label className="font-semibold dark:text-gray-300">Minimum Order Quantity</label>
             <input
               type="number"
               required
-              className="input input-bordered w-full"
+              className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
               name="p_min"
             />
           </div>
 
           {/* Image Upload */}
           <div>
-            <label className="font-semibold">Upload Images</label>
+            <label className="font-semibold dark:text-gray-300">Upload Images</label>
             <input
               type="file"
               multiple
@@ -154,7 +154,7 @@ export default function AddProduct() {
 
           {/* Demo Video */}
           <div>
-            <label className="font-semibold">Demo Video Link (Optional)</label>
+            <label className="font-semibold dark:text-gray-300">Demo Video Link (Optional)</label>
             <input
               type="url"
               className="input input-bordered w-full"
@@ -165,8 +165,8 @@ export default function AddProduct() {
 
           {/* Payment Option */}
           <div>
-            <label className="font-semibold">Payment Option</label>
-            <select className="select select-bordered w-full" required name="p_payment">
+            <label className="font-semibold dark:text-gray-300">Payment Option</label>
+            <select className="select select-bordered w-full dark:bg-gray-700 dark:text-white" required name="p_payment">
               <option>Cash on Delivery</option>
               <option>PayFirst</option>
             </select>
@@ -175,13 +175,13 @@ export default function AddProduct() {
           {/* Show on Home */}
           <div className="flex items-center gap-2">
             <input type="checkbox" className="checkbox checkbox-primary" name="show_on_home"/>
-            <span className="font-medium">Show on Home Page</span>
+            <span className="font-medium dark:text-gray-300">Show on Home Page</span>
           </div>
 
           {/* Submit */}
           <button
             type="submit"
-            className="btn bg-pink-600 hover:bg-pink-500 text-white w-full text-lg"
+            className="btn bg-pink-600 hover:bg-pink-500 dark:bg-pink-600 dark:hover:bg-pink-700 text-white w-full text-lg"
           >
             Create Product
           </button>

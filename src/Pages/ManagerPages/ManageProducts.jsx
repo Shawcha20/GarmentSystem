@@ -37,19 +37,19 @@ export default function ManageProducts() {
   );
 
   return (
-    <div className="p-6 w-full">
-      <h2 className="text-3xl font-bold text-pink-600 mb-6">Manage Products({filtered.length})</h2>
+    <div className="p-6 w-full bg-gray-50 dark:bg-gray-800 rounded-lg">
+      <h2 className="text-3xl font-bold text-pink-600 dark:text-pink-400 mb-6">Manage Products({filtered.length})</h2>
 
       <input
         type="text"
         placeholder="Search by name"
-        className="input input-bordered mb-4 w-full max-w-sm"
+        className="input input-bordered mb-4 w-full max-w-sm dark:bg-gray-800 dark:text-white"
         onChange={(e) => setSearch(e.target.value)}
       />
 
-      <div className="overflow-x-auto bg-white rounded-xl shadow">
+      <div className="overflow-x-auto bg-white dark:bg-gray-800 rounded-xl shadow dark:shadow-gray-900">
         <table className="table">
-          <thead className="bg-pink-100">
+          <thead className="bg-pink-100 dark:bg-gray-700">
             <tr>
               <th>Image</th>
               <th>Name</th>
@@ -89,8 +89,8 @@ export default function ManageProducts() {
       </div>
       {selectedProduct && (
         <dialog className="modal modal-open">
-          <div className="modal-box">
-            <h3 className="font-bold text-lg text-pink-600">Update Product</h3>
+          <div className="modal-box bg-white dark:bg-gray-800 dark:text-white">
+            <h3 className="font-bold text-lg text-pink-600 dark:text-pink-400">Update Product</h3>
 
             <form
               onSubmit={async (e) => {
@@ -121,20 +121,20 @@ export default function ManageProducts() {
               <input
                 name="name"
                 defaultValue={selectedProduct.name}
-                className="input input-bordered w-full"
+                className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
               />
 
               <input
                 name="price"
                 type="number"
                 defaultValue={selectedProduct.price}
-                className="input input-bordered w-full"
+                className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
               />
 
               <select
                 name="paymentOption"
                 defaultValue={selectedProduct.paymentOption}
-                className="select select-bordered w-full"
+                className="select select-bordered w-full dark:bg-gray-700 dark:text-white"
               >
                 <option>Cash on Delivery</option>
                 <option>PayFirst</option>

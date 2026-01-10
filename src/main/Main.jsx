@@ -5,7 +5,7 @@ import Footer from '../Components/Shared/Footer'
 
 export default function Main() {
   return (
-    <div className="min-h-screen flex flex-col overflow-x-hidden">
+    <div className="min-h-screen flex flex-col overflow-x-hidden light">
       <Navbar />
       <div className="flex-1">
         <Outlet />

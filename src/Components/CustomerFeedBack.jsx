@@ -52,7 +52,7 @@ export default function CustomerFeedbackCarousel() {
   const active = reviews[index];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-6 text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -65,7 +65,7 @@ export default function CustomerFeedbackCarousel() {
           </span>
         </motion.h2>
 
-        <p className="text-gray-600 mb-10 text-lg">
+        <p className="text-gray-600 dark:text-gray-300 mb-10 text-lg">
           Hear what our lovely customers say about their experience.
         </p>
 
@@ -78,17 +78,17 @@ export default function CustomerFeedbackCarousel() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.6 }}
-              className="bg-pink-50 p-10 rounded-2xl shadow-lg border border-pink-200"
+              className="bg-pink-50 dark:bg-gray-800 p-10 rounded-2xl shadow-lg dark:shadow-gray-800 border border-pink-200 dark:border-gray-700"
             >
               {/* Customer Image */}
               <img
                 src={active.image}
                 alt={active.name}
-                className="w-20 h-20 rounded-full mx-auto mb-4 object-cover border-4 border-pink-300 shadow-md"
+                className="w-20 h-20 rounded-full mx-auto mb-4 object-cover border-4 border-pink-300 dark:border-pink-600 shadow-md"
               />
 
               {/* Customer Name */}
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
                 {active.name}
               </h3>
 
@@ -102,7 +102,7 @@ export default function CustomerFeedbackCarousel() {
               </div>
 
               {/* Review Text */}
-              <p className="text-gray-700 text-sm leading-relaxed max-w-xl mx-auto">
+              <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed max-w-xl mx-auto">
                 “{active.review}”
               </p>
             </motion.div>
@@ -111,14 +111,14 @@ export default function CustomerFeedbackCarousel() {
           {/* Navigation Buttons */}
           <button
             onClick={prevReview}
-            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white shadow-md p-3 rounded-full hover:bg-pink-100 transition"
+            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-700 shadow-md dark:shadow-gray-900 p-3 rounded-full hover:bg-pink-100 dark:hover:bg-gray-600 transition text-gray-800 dark:text-white"
           >
             ❮
           </button>
 
           <button
             onClick={nextReview}
-            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white shadow-md p-3 rounded-full hover:bg-pink-100 transition"
+            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-700 shadow-md dark:shadow-gray-900 p-3 rounded-full hover:bg-pink-100 dark:hover:bg-gray-600 transition text-gray-800 dark:text-white"
           >
             ❯
           </button>
@@ -130,7 +130,7 @@ export default function CustomerFeedbackCarousel() {
             <div
               key={i}
               className={`w-3 h-3 rounded-full transition-all ${
-                i === index ? "bg-pink-500 w-6" : "bg-pink-300"
+                i === index ? "bg-pink-500 dark:bg-pink-400 w-6" : "bg-pink-300 dark:bg-pink-700"
               }`}
             ></div>
           ))}

@@ -3,8 +3,8 @@ import React from 'react'
 export default function UpdateModal() {
   return (
     <div>
-        <div className="modal-box">
-      <h3 className="font-bold text-lg text-pink-600">
+        <div className="modal-box bg-white dark:bg-gray-800 dark:text-white">
+      <h3 className="font-bold text-lg text-pink-600 dark:text-pink-400">
         Update Product
       </h3>
 
@@ -39,20 +39,20 @@ export default function UpdateModal() {
         <input
           name="name"
           defaultValue={selectedProduct.name}
-          className="input input-bordered w-full"
+          className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
         />
 
         <input
           name="price"
           type="number"
           defaultValue={selectedProduct.price}
-          className="input input-bordered w-full"
+          className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
         />
 
         <select
           name="paymentOption"
           defaultValue={selectedProduct.paymentOption}
-          className="select select-bordered w-full"
+          className="select select-bordered w-full dark:bg-gray-700 dark:text-white"
         >
           <option>Cash on Delivery</option>
           <option>PayFirst</option>

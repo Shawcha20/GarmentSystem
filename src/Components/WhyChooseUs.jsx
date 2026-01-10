@@ -31,14 +31,14 @@ export default function WhyChooseUs() {
   ];
 
   return (
-    <section className="py-20 bg-pink-50">
+    <section className="py-20 bg-pink-50 dark:bg-gray-900">
       <div className="container mx-auto px-6">
         
         <h2 className="text-4xl font-extrabold text-center mb-4 bg-gradient-to-r from-pink-500 to-pink-400 text-transparent bg-clip-text">
           Why Choose Us?
         </h2>
 
-        <p className="text-center text-gray-600 mb-14 text-lg">
+        <p className="text-center text-gray-600 dark:text-gray-300 mb-14 text-lg">
           We make outfit renting effortless, stylish, and affordable.
         </p>
 
@@ -48,13 +48,13 @@ export default function WhyChooseUs() {
               key={b.id}
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.4 }}
-              className="bg-white p-8 rounded-2xl text-center shadow-lg border border-pink-100"
+              className="bg-white dark:bg-gray-800 p-8 rounded-2xl text-center shadow-lg dark:shadow-gray-800 border border-pink-100 dark:border-gray-700"
             >
               <div className="flex justify-center mb-4">{b.icon}</div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
                 {b.title}
               </h3>
-              <p className="text-gray-600 text-sm">{b.desc}</p>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">{b.desc}</p>
             </motion.div>
           ))}
         </div>

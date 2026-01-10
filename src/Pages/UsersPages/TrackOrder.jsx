@@ -22,12 +22,12 @@ export default function TrackOrder() {
 
   return (
     <div className="p-6 w-full">
-      <h2 className="text-3xl font-bold text-pink-600 mb-6">
+      <h2 className="text-3xl font-bold text-pink-600 dark:text-pink-400 mb-6">
         Track Orders
       </h2>
 
-      <table className="table bg-white shadow rounded-xl">
-        <thead className="bg-pink-100">
+      <table className="table bg-white dark:bg-gray-800 shadow dark:shadow-gray-900 rounded-xl">
+        <thead className="bg-pink-100 dark:bg-gray-700">
           <tr>
             <th>Order ID</th>
             <th>Product</th>

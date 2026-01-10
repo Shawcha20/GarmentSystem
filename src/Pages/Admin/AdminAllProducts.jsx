@@ -43,14 +43,14 @@ export default function AdminAllProducts() {
   };
 
   return (
-    <div className="p-6 w-full">
-      <h2 className="text-3xl font-bold text-pink-600 mb-6">
+    <div className="p-6 w-full bg-gray-50 dark:bg-gray-800 rounded-lg">
+      <h2 className="text-3xl font-bold text-pink-600 dark:text-pink-400 mb-6">
         All Products ({products.length})
       </h2>
 
-      <div className="overflow-x-auto bg-white rounded-xl shadow">
+      <div className="overflow-x-auto bg-white dark:bg-gray-800 rounded-xl shadow dark:shadow-gray-900\">
         <table className="table">
-          <thead className="bg-pink-100">
+          <thead className="bg-pink-100 dark:bg-gray-700\">
             <tr>
               <th>Image</th>
               <th>Name</th>

@@ -33,15 +33,15 @@ export default function MyOrders() {
   if (orders.length === 0) {
     return (
       <div className="p-6 w-full text-center">
-        <h2 className="text-3xl font-bold text-pink-600 mb-4">
+        <h2 className="text-3xl font-bold text-pink-600 dark:text-pink-400 mb-4">
           My Orders
         </h2>
-        <p className="text-gray-500 text-lg">
-          You haven’t placed any orders yet.
+        <p className="text-gray-500 dark:text-gray-400 text-lg">
+          You haven't placed any orders yet.
         </p>
         <button
           onClick={() => navigate("/all-products")}
-          className="btn bg-pink-500 text-white mt-4"
+          className="btn bg-pink-500 hover:bg-pink-600 dark:bg-pink-600 dark:hover:bg-pink-700 text-white mt-4"
         >
           Browse Products
         </button>
@@ -81,13 +81,13 @@ export default function MyOrders() {
 
   return (
     <div className="p-6 w-full">
-      <h2 className="text-3xl font-bold text-pink-600 mb-6">
+      <h2 className="text-3xl font-bold text-pink-600 dark:text-pink-400 mb-6">
         My Orders
       </h2>
 
-      <div className="overflow-x-auto bg-white rounded-xl shadow">
+      <div className="overflow-x-auto bg-white dark:bg-gray-800 rounded-xl shadow dark:shadow-gray-900">
         <table className="table">
-          <thead className="bg-pink-100">
+          <thead className="bg-pink-100 dark:bg-gray-700">
             <tr>
               <th>Order ID</th>
               <th>Product</th>
