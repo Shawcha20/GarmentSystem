@@ -7,10 +7,10 @@ export default function PublicRoute({ children }) {
   const location = useLocation();
 
   if (loading) {
-    return null; // or a spinner if you want
+    return null; 
   }
 
-  // If user is logged in → redirect to home
+  
   if (user) {
     return <Navigate to="/" replace />;
   }

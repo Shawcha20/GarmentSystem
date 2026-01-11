@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
@@ -8,76 +8,65 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import { auth } from "../Firebase/Firebase.init.js";
+import { auth } from "../Firebase/Firebase.init";
 import AuthContext from "./authContext";
 import axios from "axios";
 
 const googleProvider = new GoogleAuthProvider();
 
 export default function AuthProvider({ children }) {
+ 
   const [user, setUser] = useState(null);
 
-  // 🔑 IMPORTANT: loading should default to FALSE
-  const [loading, setLoading] = useState(false);
+ 
+  const [authLoading, setAuthLoading] = useState(true);
 
+ 
   const [role, setRole] = useState("buyer");
   const [status, setStatus] = useState("active");
   const [suspendInfo, setSuspendInfo] = useState(null);
 
-  /* =======================
-      AUTH ACTIONS
-  ======================= */
-
   const signIn = (email, password) => {
-    setLoading(true);
+  
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   const createUser = (email, password) => {
-    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const googleLogin = () => {
-    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
   const userSignOut = async () => {
-    setLoading(true);
     await signOut(auth);
     setUser(null);
     setRole("buyer");
     setStatus("active");
     setSuspendInfo(null);
-    setLoading(false);
   };
 
   const userUpdateProfile = (name, photoUrl) => {
-    setLoading(true);
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photoUrl,
     });
   };
 
-  /* =======================
-      AUTH STATE LISTENER
-  ======================= */
+  // ================= AUTH OBSERVER =================
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      // 🚀 PUBLIC USERS → DO NOT BLOCK
       if (!currentUser) {
         setUser(null);
         setRole("buyer");
         setStatus("active");
         setSuspendInfo(null);
-        setLoading(false);
+        setAuthLoading(false);
         return;
       }
 
-      // 🔐 AUTHENTICATED USER
       setUser(currentUser);
 
       try {
@@ -101,20 +90,18 @@ export default function AuthProvider({ children }) {
         setStatus("active");
         setSuspendInfo(null);
       } finally {
-        setLoading(false);
+        setAuthLoading(false);
       }
     });
 
     return () => unsubscribe();
   }, []);
 
-  /* =======================
-      CONTEXT VALUE
-  ======================= */
+
 
   const authInfo = {
     user,
-    loading,
+    authLoading, 
     role,
     status,
     suspendInfo,
@@ -124,7 +111,6 @@ export default function AuthProvider({ children }) {
     googleLogin,
     userSignOut,
     userUpdateProfile,
-    setLoading,
   };
 
   return (
